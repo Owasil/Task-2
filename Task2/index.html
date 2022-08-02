@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Registration Form</title>
+	  <script src="js/jquery.min.js"></script>
+	<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<form class="" action="confirmation.html" method="post">
+
+<div class="wrapper">
+    <div class="title">
+      Registration Form
+    </div>
+    <div class="form">
+      <div class="inputfield">
+         <label>Title</label>
+         <input type="text" class="input" required>
+      </div>
+       <div class="inputfield">
+          <label>First Name</label>
+          <input type="text" class="input" id="FirstName" required>
+       </div>
+        <div class="inputfield">
+          <label>Last Name</label>
+          <input type="text" class="input" id="LastName"required>
+       </div>
+       <div class="inputfield">
+           <label>Street</label>
+           <input type="text" class="input"required>
+        </div>
+        <div class="inputfield">
+            <label>City</label>
+            <input type="text" class="input"required>
+         </div>
+       <div class="inputfield">
+           <label>Phone Number</label>
+           <input type="text" id="number" class="input"required>
+        </div>
+        <div class="inputfield">
+          <label>Email Address</label>
+          <input type="email" class="input"required>
+       </div>
+        <div class="inputfield">
+          <label>Gender</label>
+          <div class="custom_select">
+            <select required>
+              <option value="">Select</option>
+              <option value="male">Male</option>
+              <option value="female">Female</option>
+            </select>
+          </div>
+        </div>
+          <div class="inputfield">
+            <label>Date Of Birth</label>
+            <input type="date" placeholder="dd/mm/yyyy" id="birthday1"class="input" required>
+         </div>
+         <div class="inputfield">
+           <label>Nationality</label>
+           <div class="custom_select">
+             <select id="Selection" onchange="change()" required>
+               <option value="s">Select</option>
+               <option value="mur">Mauritian</option>
+               <option value="o">Others</option>
+             </select>
+           </div>
+         </div>
+           <div id="Specify"class="inputfield">
+               <label>Specify Nationality</label>
+               <textarea class="textarea"></textarea>
+            </div>
+            <div id="NIC"class="inputfield">
+                <label>NIC</label>
+                <input type="text" class="input">
+             </div>
+             <div id="Passport" class="inputfield">
+                 <label>Passport</label>
+                 <input type="text" class="input">
+              </div>
+
+       <div class="inputfield">
+          <label>Password</label>
+          <input type="password" id="password"class="input">
+       </div>
+      <div class="inputfield">
+          <label>Confirm Password</label>
+          <input type="password" id="confirmp" class="input">
+       </div>
+      <div class="inputfield terms">
+          <label class="check">
+            <input type="checkbox" required>
+            <span class="checkmark"></span>
+          </label>
+          <p>Agreed to terms and conditions</p>
+       </div>
+      <div class="inputfield">
+        <input type="submit" value="Register" class="btn">
+      </div>
+      <div class="inputfield">
+        <input type="reset" value="Reset" class="btn" >
+      </div>
+    </div>
+</div>
+
+</form>
+
+<script type="text/javascript">
+  var selection = document.getElementById("Selection");
+  function change() {
+    if (selection.value == "o"){
+      document.getElementById("Specify").style.display='';
+      document.getElementById("Passport").style.display='';
+      document.getElementById("NIC").style.display='none';
+
+    }else if(selection.value == "mur"){
+      document.getElementById("Specify").style.display='none';
+      document.getElementById("Passport").style.display='none';
+      document.getElementById("NIC").style.display='';
+    } else if(selection.value=="s"){
+      document.getElementById("Specify").style.display='none';
+      document.getElementById("Passport").style.display='none';
+      document.getElementById("NIC").style.display='none';
+    }
+  }
+
+  function changedate(){
+var max1 = document.getElementById("birthday1");
+var today = new Date();
+var date = today.toLocaleString();
+today.setDate(today.getDate()-6575)
+if (today.getDate()>0&&today.getDate()<10){
+  if (today.getMonth()>0&&today.getMonth()<10){
+var newdate=today.getFullYear()+"-0"+today.getMonth()+"-0"+today.getDate();
+max1.setAttribute("max",newdate);
+}else{
+  var newdate=today.getFullYear()+"-"+today.getMonth()+"-0"+today.getDate();
+max1.setAttribute("max",newdate);
+}
+}else{
+  if (today.getMonth()>0&&today.getMonth()<10){
+var newdate=today.getFullYear()+"-0"+today.getMonth()+"-"+today.getDate();
+max1.setAttribute("max",newdate);
+}else{
+  var newdate=today.getFullYear()+"-"+today.getMonth()+"-"+today.getDate();
+max1.setAttribute("max",newdate);
+}
+}
+}
+
+function niccheck(){
+var nic2=document.getElementById("NIC");
+var name2=((document.getElementById("LastName").value).substring(0,1));//.toLowerCase();
+var dob = ((document.getElementById("birthday1").value));
+var date = dob.substring(8,9); //1
+var month = dob.substring(5,6); //0
+var year = dob.substring(2,3); //0
+var date2 = dob.substring(9,10); //5
+var month2 = dob.substring(6,7); //4
+var year2 = dob.substring(3,4); //0
+//var x = dob.substring(0,1); //2
+//var y = dob.substring(1,2); //0
+nic2.setAttribute("pattern","["+name2+"]"+"["+date+"]"+"["+date2+"]"+"["+month+"]"+"["+month2+"]"+"["+year+"]"+"["+year2+"]"+"[0-9]{7}")
+}
+
+function confirm(){
+var password1=document.getElementById("password").value;
+var password2=document.getElementById("confirmp")
+var aa = password1.substring(0,1)
+var ab = password1.substring(1,2)
+var ac = password1.substring(2,3)
+var ad = password1.substring(3,4)
+var ae = password1.substring(4,5)
+var af = password1.substring(5,6)
+var ag = password1.substring(6,7)
+var ah = password1.substring(7,8)
+password2.setAttribute("pattern","["+aa+"]"+"["+ab+"]"+"["+ac+"]"+"["+ad+"]"+"["+ae+"]"+"["+af+"]"+"["+ag+"]"+"["+ah+"]")
+console.log(password2.getAttribute("pattern"))
+}
+
+function numbers(){
+var numb=document.getElementById("number")
+numb.style.display="inline"
+}
+</script>
+</body>
+</html>
